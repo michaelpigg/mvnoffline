@@ -1,0 +1,15 @@
+#! /bin/bash
+TARGET=~/.m2/settings.xml
+OFFLINE='<offline>true<'
+ONLINE='<offline>false<'
+if [ "$#" -gt 0 -a "$1" = "no" ]
+then
+ echo "go online"
+ CURRENT=$OFFLINE
+ GOAL=$ONLINE
+else
+ echo "go offline"
+ CURRENT=$ONLINE
+ GOAL=$OFFLINE
+fi
+sed -i bak -e s/$CURRENT/$GOAL/ $TARGET 
